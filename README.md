@@ -100,9 +100,7 @@ conda env export --no-builds | grep -v '^prefix:' > environment.yml
 ### MRI Feature Extraction Environment
 
 The MRI pipeline (`adRAG/UniBrain-master`) requires its own environment named `mri`. The
-exact pinned dependency list lives in `adRAG/UniBrain-master/requirements.txt`. Full
-instructions, environment export commands, input formats, and troubleshooting are in
-[docs/MRI_EXTRACTION.md](docs/MRI_EXTRACTION.md).
+exact pinned dependency list lives in `adRAG/UniBrain-master/requirements.txt`. 
 
 ```bash
 # If you have already created the `mri` env, export it for sharing:
@@ -117,10 +115,6 @@ conda list -n mri --export > conda-mri-explicit.txt
 
 ## Data Preparation
 
-**Raw clinical data and MRI data cannot be publicly released** due to patient privacy,
-ethical review constraints, and data-use agreements. You must prepare your own data
-according to the description in the paper and in [docs/DATA.md](docs/DATA.md).
-
 - Clinical tabular data: CSV with an `ID` column, feature columns, primary labels
   (`NC`, `MCI`, `DE`), and downstream etiology/subtype labels. Missing values are handled
   with imputation + a binary missingness mask (observed = 0, missing = 1).
@@ -128,8 +122,7 @@ according to the description in the paper and in [docs/DATA.md](docs/DATA.md).
 - Configure all paths through `configs/paths.example.yaml` (copy to `paths.yaml`) and the
   per-module config files — do **not** hard-code machine-specific paths.
 
-Place data outside version control; `data/` contains only documentation. See
-[data/README.md](data/README.md).
+Place data outside version control; See[data/README.md](data/README.md).
 
 ---
 
@@ -166,7 +159,7 @@ corrects the global prior.
    `pipeline_feature_to_optimized_text1225.py`).
 3. **Prior correction pipeline:** `adRAG/main.py`.
 
-**Correction rule (exact):** only the first three prior dimensions (NC / MCI / DE) are
+Correction rule (exact): only the first three prior dimensions (NC / MCI / DE) are
 corrected via convex interpolation with `alpha = 0.65`; 
 ---
 
@@ -196,5 +189,4 @@ from the authors.
 
 ### Disclaimer
 
-This repository is provided **for research purposes only** and is **not** intended for
-clinical deployment, diagnosis, treatment, or commercial use. No warranty is provided.
+This repository is provided **for research purposes only**. No warranty is provided.
