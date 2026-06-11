@@ -157,9 +157,7 @@ corrects the global prior.
    `adRAG/poe_client.example.py` → `adRAG/poe_client.py`. These filenames are gitignored.
 2. **Feature → text:** `adRAG/Feature2Txt/` (`feature_to_text.py`, `generate_rules.py`,
    `pipeline_feature_to_optimized_text1225.py`).
-3. **Prior correction pipeline:** `adRAG/main.py`.
-
-Correction rule (exact): only the first three prior dimensions (NC / MCI / DE) are
+3. **Prior correction pipeline:** `adRAG/main.py`.Correction rule (exact): only the first three prior dimensions (NC / MCI / DE) are
 corrected via convex interpolation with `alpha = 0.65`; 
 ---
 
