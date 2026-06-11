@@ -1,0 +1,42 @@
+# ===========================================================================
+# Example main-project configuration.
+# Copy to configs/config.yaml and adapt. Do NOT commit real paths or secrets.
+# ===========================================================================
+
+# --- Reproducibility ---
+seed: 42
+n_folds: 5
+
+# --- Tasks ---
+primary_classes: [NC, MCI, DE]          # NC=normal, MCI=mild cognitive impairment, DE=dementia
+downstream:
+  etiology: ['AD', 'LBD', 'VD', 'diagnosis_FTD', 'EXC', 'PSY', 'ODE']          # example etiology labels (adapt to your label set)
+  subtype: ['CI', 'MCI_A', 'MCI_AM', 'MCI_Na', 'MCI_NaM']
+
+# --- Missing-value handling (tabular branch) ---
+# Raw NaN is never fed to the MLP. Missing positions are imputed and paired with
+# a binary mask: observed = 0, missing/masked = 1.
+missing:
+  imputation: numeric                   # numeric | noise
+  mask_convention: { observed: 0, missing: 1 }
+
+# --- Feature-sparsity experiment ---
+sparsity:
+  mask_ratios: [0.0, 0.3, 0.6, 0.9]
+  fixed_subject_ids: true               # same IDs across ratios and across mHC / RAG pipelines
+
+# --- RAG-LLM prior correction ---
+rag_correction:
+  correct_dims: [NC, MCI, DE]           # only the first three prior dimensions
+  method: convex_interpolation
+  alpha: 0.65
+  softmax_renormalize: false
+  threshold_before_film: false
+  threshold_on_final_sigmoid: true
+
+# --- Training hyperparameters (example placeholders) ---
+train:
+  batch_size: 32
+  epochs: 100
+  lr: 0.0002
+  weight_decay: 1.0e-05
