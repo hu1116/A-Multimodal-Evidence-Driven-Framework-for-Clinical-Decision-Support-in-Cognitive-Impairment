@@ -22,18 +22,17 @@ c) Mechanism of Chain-of-Thought (CoT) reasoning. The RAG-LLM synthesizes patien
   imputation or random-noise filling) and paired with a **binary missingness mask**
   (observed = 0, missing/masked = 1). See [docs/DATA.md](docs/DATA.md).
 - **MRI image branch.** Structural MRI is processed through the UniBrain / MedKLIP-based
-  pipeline (`adRAG/UniBrain-master`) to produce image-derived features. See
-  [docs/MRI_EXTRACTION.md](docs/MRI_EXTRACTION.md).
+  pipeline (`adRAG/UniBrain-master`) to produce image-derived features.
 - **mHC** — a multimodal hierarchical classifier producing the primary NC/MCI/DE diagnosis
   and downstream etiology/subtype outputs.
 - **MEDRF** — multimodal evidence-driven fusion combining the two modalities with global
   priors via FiLM-style conditioning.
 - **RAG-LLM prior correction.** A retrieval-augmented LLM converts structured features into
   text, retrieves evidence, and proposes a corrected prior. Only the first three dimensions
-  of the global prior (NC / MCI / DE) are corrected, by **convex interpolation** with
-  `alpha = 0.65`; **no softmax re-normalization** is applied, and **no thresholding** is
+  of the global prior (NC / MCI / DE) are corrected; 
+  **no softmax re-normalization** is applied, and **no thresholding** is
   applied before FiLM conditioning — thresholding is applied **only** to the final sigmoid
-  outputs. See [docs/REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
+  outputs. 
 
 ---
 
@@ -41,7 +40,7 @@ c) Mechanism of Chain-of-Thought (CoT) reasoning. The RAG-LLM synthesizes patien
 
 The original research structure is **preserved** (the code has working-directory-relative
 path dependencies). Documentation, example configs, and scaffolding have been added around
-it. For a per-file purpose table, see [docs/CODE_STRUCTURE.md](docs/CODE_STRUCTURE.md).
+it. For a per-file purpose table.
 
 ```
 all_code/
@@ -157,7 +156,7 @@ corrects the global prior.
    `adRAG/poe_client.example.py` → `adRAG/poe_client.py`. These filenames are gitignored.
 2. **Feature → text:** `adRAG/Feature2Txt/` (`feature_to_text.py`, `generate_rules.py`,
    `pipeline_feature_to_optimized_text1225.py`).
-3. **Prior correction pipeline:** `adRAG/main.py`.Correction rule (exact): only the first three prior dimensions (NC / MCI / DE) are
+3. **Prior correction pipeline:** `adRAG/main.py`. Correction rule (exact): only the first three prior dimensions (NC / MCI / DE) are
 corrected via convex interpolation with `alpha = 0.65`; 
 ---
 
