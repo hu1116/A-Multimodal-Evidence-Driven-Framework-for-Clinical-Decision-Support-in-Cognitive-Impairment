@@ -1,21 +1,15 @@
 # A Multimodal Evidence-Driven Framework for Clinical Decision Support in Cognitive Impairment
 
-> Research code for the paper **"A Multimodal Evidence-Driven Framework for Clinical
-> Decision Support in Cognitive Impairment"** (mHC / MEDRF / RAG-LLM).
->
-> ⚠️ **Research use only.** This repository is provided for academic peer review and
-> reproducibility. It is **not** a medical device and is **not** intended for clinical
-> diagnosis, treatment, or deployment. See [License](#license) and [Disclaimer](#disclaimer).
-
 ---
 
 ## introduction
 
-TDeep learning approaches for cognitive impairment diagnosis have shown considerable promise, but their clinical translation remains limited by poor interpretability and weak linkage between model outputs and established medical evidence. Here we developed the Multimodal Evidence-Driven Reasoning Framework (MEDRF), which integrates a Multimodal Hierarchical Cascade (mHC) classifier with a retrieval-augmented large language model (RAG-LLM) for evidence-guided reasoning. MEDRF leverages routinely collected non-invasive data from clinical profiles and structural MRI to identify cognitive impairment stages and etiologies. Across 15 diagnostic labels, mHC outperformed flat multimodal baselines, supporting hierarchical diagnostic modelling. When the mHC was evaluated under progressive feature masking, performance declined with increasing missingness, whereas RAG-LLM correction mitigated this effect, especially under severe sparsity.
+Deep learning approaches for cognitive impairment diagnosis have shown considerable promise, but their clinical translation remains limited by poor interpretability and weak linkage between model outputs and established medical evidence. Here we developed the Multimodal Evidence-Driven Reasoning Framework (MEDRF), which integrates a Multimodal Hierarchical Cascade (mHC) classifier with a retrieval-augmented large language model (RAG-LLM) for evidence-guided reasoning. MEDRF leverages routinely collected non-invasive data from clinical profiles and structural MRI to identify cognitive impairment stages and etiologies. Across 15 diagnostic labels, mHC outperformed flat multimodal baselines, supporting hierarchical diagnostic modelling. When the mHC was evaluated under progressive feature masking, performance declined with increasing missingness, whereas RAG-LLM correction mitigated this effect, especially under severe sparsity.
 
 ![Fig 1](Figtable/Fig1.png)
 
-**Fig. 1 | Overview of the Multimodal Evidence-Driven Reasoning Framework (MEDRF). a) Architecture of the multimodal hierarchical cascade (mHC). Left: The deep fusion network employs dual-stream encoders to fuse 3D MRI and tabular clinical data into a unified latent representation. Right: The Hierarchical mirrors clinical taxonomy, decomposing diagnosis into three progressive tasks: Primary State (Task 1), MCI Subtypes (Task 2), and Dementia Etiologies (Task 3). Probability propagation (dotted arrows) ensures that superordinate predictions explicitly condition and constrain the search space for fine-grained sub-typing.
+Fig. 1 | Overview of the Multimodal Evidence-Driven Reasoning Framework (MEDRF). 
+a) Architecture of the multimodal hierarchical cascade (mHC). Left: The deep fusion network employs dual-stream encoders to fuse 3D MRI and tabular clinical data into a unified latent representation. Right: The Hierarchical mirrors clinical taxonomy, decomposing diagnosis into three progressive tasks: Primary State (Task 1), MCI Subtypes (Task 2), and Dementia Etiologies (Task 3). Probability propagation (dotted arrows) ensures that superordinate predictions explicitly condition and constrain the search space for fine-grained sub-typing.
 b) End-to-end system workflow. Raw patient data (left) is processed through the trained multi-task structure (center), generating probabilistic predictions, visual features, and an interpretability evidence chain.
 c) Mechanism of Chain-of-Thought (CoT) reasoning. The RAG-LLM synthesizes patient profiles with retrieved similar cases and medical guidelines. It executes a multi-step reasoning process—validating data quality, analyzing cognitive performance, and reconciling conflicting evidence—to produce a transparent, verifiable clinical report (right) containing confidence scores and next-step recommendations.
 
