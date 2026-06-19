@@ -739,12 +739,8 @@ def process_single_patient(patient_row, retriever, case_retriever, output_dir="r
                 print(f"Skipping {patient_id}: valid report exists.")
                 return (patient_id, "SKIPPED", "SKIPPED", "SKIPPED", True, "SKIPPED", None)
 
-    def retrieve_step(state: PatientState):
-        return{"similar_cases_summary": "No similar cases provided.",
-            "patient_contradictions": [],
-            "retrieved_docs": []}
+
     workflow = StateGraph(PatientState)
-    workflow.add_node("retrieve", retrieve_step)
     workflow.add_node("generate", generate_node)
     workflow.add_node("critic", critic_node)
     

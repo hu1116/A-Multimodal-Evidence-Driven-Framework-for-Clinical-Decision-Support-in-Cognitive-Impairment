@@ -60,7 +60,6 @@ all_code/
 └── adRAG/
     ├── main.py             # RAG-LLM pipeline (langgraph + LLM clients + FiLM)
     ├── ReportToCsv.py              # LLM report → CSV
-    ├── deepseek_api.example.py     # template for the (gitignored) deepseek_api.py
     ├── Feature2Txt/                # feature → text + rule generation
     └── UniBrain-master/            # MRI feature-extraction pipeline (separate conda env)
         └── Brain_MRI/{configs, models, weights, docs}
